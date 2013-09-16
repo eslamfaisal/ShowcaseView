@@ -10,7 +10,7 @@
     <groupId>com.github.espiandev</groupId>
     <artifactId>showcaseview-parent</artifactId>
     <packaging>pom</packaging>
-    <version>3.5.0-SOUNDCLOUD</version>
+    <version>3.5.1-SOUNDCLOUD-SNAPSHOT</version>
 
     <name>ShowcaseView (parent)</name>
     <description>Android library for implementing Holo-style highlighting of important UI areas.</description>
@@ -129,4 +129,17 @@
          </plugins>
        </pluginManagement>
      </build>
+
+    <distributionManagement>
+            <snapshotRepository>
+                <id>soundcloud-thirdparty-snapshots</id>
+                <name>SoundCloud Third-Party Snapshots</name>
+                <url>http://maven.int.s-cloud.net/content/repositories/thirdparty_snapshots</url>
+            </snapshotRepository>
+            <repository>
+                <id>soundcloud-thirdparty-releases</id>
+                <name>SoundCloud Releases</name>
+                <url>http://maven.int.s-cloud.net/content/repositories/thirdparty_releases</url>
+            </repository>
+        </distributionManagement>
    </project>
