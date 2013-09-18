@@ -1,5 +1,10 @@
 package com.github.espiandev.showcaseview;
 
+import static com.github.espiandev.showcaseview.anim.AnimationUtils.AnimationEndListener;
+import static com.github.espiandev.showcaseview.anim.AnimationUtils.AnimationStartListener;
+
+import com.github.espiandev.showcaseview.anim.AnimationUtils;
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -30,12 +35,7 @@ import android.view.ViewParent;
 import android.widget.Button;
 import android.widget.RelativeLayout;
 
-import com.github.espiandev.showcaseview.anim.AnimationUtils;
-
 import java.lang.reflect.Field;
-
-import static com.github.espiandev.showcaseview.anim.AnimationUtils.AnimationEndListener;
-import static com.github.espiandev.showcaseview.anim.AnimationUtils.AnimationStartListener;
 
 /**
  * A view which allows you to showcase areas of your app with an explanation.
@@ -516,6 +516,11 @@ public class ShowcaseView extends RelativeLayout implements View.OnClickListener
 
     @Override
     public void onClick(View view) {
+        hide();
+    }
+
+    public void hide() {
+
         // If the type is set to one-shot, store that it has shot
         if (mOptions.shotType == TYPE_ONE_SHOT) {
             SharedPreferences internal = getContext().getSharedPreferences(PREFS_SHOWCASE_INTERNAL, Context.MODE_PRIVATE);
@@ -525,10 +530,7 @@ public class ShowcaseView extends RelativeLayout implements View.OnClickListener
                 internal.edit().putBoolean("hasShot" + getConfigOptions().showcaseId, true).commit();
             }
         }
-        hide();
-    }
 
-    public void hide() {
         if (mEventListener != null) {
             mEventListener.onShowcaseViewHide(this);
         }
