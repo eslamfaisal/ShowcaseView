@@ -578,9 +578,11 @@ public class ShowcaseView extends RelativeLayout implements View.OnClickListener
         float yDelta = Math.abs(motionEvent.getRawY() - showcaseY);
         double distanceFromFocus = Math.sqrt(Math.pow(xDelta, 2) + Math.pow(yDelta, 2));
 
-        if (mOptions.hideOnClickOutside && distanceFromFocus > showcaseRadius) {
+        if (mOptions.hideOnClickOutside && distanceFromFocus > showcaseRadius){
             this.hide();
             return true;
+        } else if (mOptions.hideOnClickAnywhere){
+            this.hide();
         }
 
         return mOptions.block && distanceFromFocus > showcaseRadius;
@@ -819,6 +821,7 @@ public class ShowcaseView extends RelativeLayout implements View.OnClickListener
     public static class ConfigOptions {
         public boolean block = true, noButton = false;
         public int insert = INSERT_TO_DECOR;
+        public boolean hideOnClickAnywhere = false;
         public boolean hideOnClickOutside = false;
 
         /**
