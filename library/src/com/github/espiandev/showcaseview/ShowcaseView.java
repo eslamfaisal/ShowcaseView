@@ -9,7 +9,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.TypedArray;
-import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Matrix;
@@ -83,8 +82,6 @@ public class ShowcaseView extends RelativeLayout implements View.OnClickListener
 
     private final String buttonText;
     private float scaleMultiplier = 1f;
-    private Bitmap mBleachedCling;
-    private int mShowcaseColor;
 
     protected ShowcaseView(Context context) {
         this(context, null, R.styleable.CustomTheme_showcaseViewStyle);
@@ -96,7 +93,6 @@ public class ShowcaseView extends RelativeLayout implements View.OnClickListener
         // Get the attributes for the ShowcaseView
         final TypedArray styled = context.getTheme().obtainStyledAttributes(attrs, R.styleable.ShowcaseView, R.attr.showcaseViewStyle, R.style.ShowcaseView);
         backColor = styled.getInt(R.styleable.ShowcaseView_sv_backgroundColor, Color.argb(128, 80, 80, 80));
-        mShowcaseColor = styled.getColor(R.styleable.ShowcaseView_sv_showcaseColor, Color.parseColor("#33B5E5"));
 
         int titleTextAppearance = styled.getResourceId(R.styleable.ShowcaseView_sv_titleTextAppearance, R.style.TextAppearance_ShowcaseView_Title);
         int detailTextAppearance = styled.getResourceId(R.styleable.ShowcaseView_sv_detailTextAppearance, R.style.TextAppearance_ShowcaseView_Detail);
@@ -129,8 +125,7 @@ public class ShowcaseView extends RelativeLayout implements View.OnClickListener
             isRedundant = true;
             return;
         }
-        showcase = getContext().getResources().getDrawable(R.drawable.cling_bleached);
-        showcase.setColorFilter(mShowcaseColor, PorterDuff.Mode.MULTIPLY);
+        showcase = getContext().getResources().getDrawable(R.drawable.cling);
 
         showcaseRadius = metricScale * INNER_CIRCLE_RADIUS;
         PorterDuffXfermode mBlender = new PorterDuffXfermode(PorterDuff.Mode.MULTIPLY);
